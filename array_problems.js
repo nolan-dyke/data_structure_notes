@@ -170,3 +170,143 @@ function findMinimum(arr){
     return currentMin
 
 }
+
+//Challenge 6
+
+// Implement a function, findFirstUnique(arr), which takes an array as 
+// input and returns the first unique integer in the array.
+
+function findFirstUnique(arr){
+    var index2;
+      for(var index1=0;index1<arr.length;index1++){ 
+          index2 = 0
+          while(index2 < arr.length){
+              if ((index1 != index2 )&& (arr[index1] == arr[index2])) 
+                  break
+              index2 += 1
+      }
+          if (index2 == arr.length) 
+              return arr[index1] 
+     
+    }
+      return null;
+  }
+
+//Challenge 7
+
+// Implement a function findSecondMaximum(arr), which returns the second 
+// largest element in the array.
+
+function findSecondMaximum(arr){
+    arr.sort(function(a, b) {
+          return a - b
+      })
+    if(arr.length >= 2)
+      return arr[arr.length-2]
+    else
+      return null
+  }
+
+  function findSecondMaximum(arr){
+    var firstMax = Number.NEGATIVE_INFINITY;
+    var secondmax = Number.NEGATIVE_INFINITY;
+    for(let item of arr){
+      if( item > firstMax)
+        firstMax = item
+    }
+    for(let item of arr){
+      if ((item < firstMax) && (item > secondmax))
+        secondmax = item
+    }
+    return secondmax
+  }
+
+  function findSecondMaximum(arr) {
+    var max = Number.NEGATIVE_INFINITY;
+    var secondmax = Number.NEGATIVE_INFINITY;
+    for (var val of arr) {
+        if (val > max) {
+            secondmax = max
+            max = val
+        } else if (val > secondmax && val!=max)
+            secondmax = val
+    }
+    return secondmax
+}
+
+//Challenge 8
+
+// Implement a function rightRotate(arr,n) that will rotate the given 
+// array by n.
+
+function rightRotate(arr, n){ 
+    var rotatedList = [] 
+    for(var item=arr.length-n;item<arr.length;item++) 
+      rotatedList.push(arr[item]) 
+    for(var item=0;item<arr.length-n;item++)
+      rotatedList.push(arr[item]) 
+    return rotatedList 
+}
+
+
+function rightRotate(arr, n) {
+    return (arr.splice(arr.length - n)).concat(arr.splice(0, arr.length))
+}
+
+//Challenge 9
+
+// Implement a function, reArrange(arr), which sorts the elements so that 
+// all the negative elements appear on the left, and all positive elements 
+// appear at the right.
+
+function reArrange(arr){
+    var neg = []
+    var pos = []
+    for(let ele of arr){
+      if( ele < 0)
+        neg.push(ele)
+      else
+        pos.push(ele)
+    }
+    return neg.concat(pos)
+  }
+  
+  function reArrange(arr) {
+    var leftMostPosEle = 0,
+        tmp;
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i] < 0) {
+            if (i != leftMostPosEle) {
+                tmp = arr[i];
+                arr[i] = arr[leftMostPosEle];
+                arr[leftMostPosEle] = tmp;
+            }
+            leftMostPosEle += 1
+        }
+    }
+    return arr;
+}
+
+//Challenge 10
+
+// Implement a function called maxMin(arr), which will rearrange the 
+// elements of a sorted array so that the first position will have the 
+// largest number, the second will have the smallest, and the third will 
+// have the second-largest and so on. In other words, all the odd-numbered 
+// indices will have the largest numbers in the array in descending order, 
+// and the even-numbered indices will have the smallest numbers in ascending 
+// order.
+
+function maxMin(arr) {
+    var result = []
+    for (var i = 0; i < (Math.floor(arr.length / 2)); i++) {
+        result.push(arr[arr.length - (i + 1)])
+        result.push(arr[i])
+    }
+
+    if (arr.length % 2)
+        result.push(arr[Math.floor(arr.length / 2)])
+    return result
+}
+
+//Challenge 11
