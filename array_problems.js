@@ -309,4 +309,59 @@ function maxMin(arr) {
     return result
 }
 
-//Challenge 11
+//Challenge 11  
+
+// Given an integer array, return the maximum subarray sum. The array may 
+// contain both positive and negative integers and is unsorted.
+
+//Below is the code I wrote that passed the tests for this challenge.
+
+let findMaxSumSubArray = function(A) {
+    let largestValue = A[0] + A[1]
+    for(let i = 0; i < A.length; i++) {
+      let solution = {}
+      if (i === 0) {
+        solution[0] = A[0]
+      } else {
+        solution[i] = A[i]
+      } 
+      for (let j = i + 1; j < A.length; j++) {
+        solution[j] = solution[j-1] + A[j]
+      }
+    for(const property in solution) {
+      if (solution[property] > largestValue) {
+        largestValue = solution[property]
+      }
+    }
+    }
+    return largestValue
+  };
+
+  //Below is a solution that uses "dynamic programming"
+
+  let findMaxSumSubArray = function(array_) {
+    if (array_.length < 1) {
+      return 0;
+    }
+  
+    let currMax = array_[0];
+    let globalMax = array_[0];
+    let lengtharray = array_.length;
+    for (let i = 1; i < lengtharray; i++) {
+      if (currMax < 0) {
+        currMax = array_[i];
+      } else {
+        currMax += array_[i];
+      }
+  
+      if (globalMax < currMax) {
+        globalMax = currMax;
+      }
+    }
+    return globalMax;
+  };
+
+  //This is a really interesting approach because rather than looking
+  //at all of the possible additons, you evaluate whether current max
+  //is negative and only update global max if currMax > globalMax
+  
