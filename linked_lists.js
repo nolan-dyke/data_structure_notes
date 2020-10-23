@@ -139,3 +139,70 @@ LinkedList.prototype.search = function(value) {
 
   return false;
 }
+
+// Deletions
+// Deletion at head
+
+LinkedList.prototype.deleteAtHead = function() {
+    //if list is empty, do nothing
+    if (this.isEmpty()) {
+      return this;
+    }
+    //Get the head and first element of the list
+    let firstElement = this.head;
+  
+    //If list is not empty, link head to the nextElement of firstElement
+    this.head = firstElement.nextElement;
+  
+    return this;
+  }
+
+// Deletion by value
+
+LinkedList.prototype.deleteVal = function(value) {
+    let deleted = false; //True or False
+    let currentNode = this.head;
+  
+    while(currentNode.nextElement !== null){
+      let nextNode = currentNode.nextElement
+      if(nextNode.data == value) {
+        currentNode.nextElement = nextNode.nextElement
+        deleted = true;
+      } else {
+        currentNode = currentNode.nextElement
+      }
+    }
+  
+    return deleted;
+  }
+
+// Solution
+
+LinkedList.prototype.deleteVal = function(value) {
+  
+    //if list is empty return false
+    if (this.isEmpty()) {
+      return false;
+    }
+  
+    //else get pointer to head
+    let currentNode = this.head;
+    // if first node's is the node to be deleted, delete it and return true
+    if (currentNode.data == value) {
+      this.head = currentNode.nextElement;
+      return true;
+    }
+  
+    // else traverse the list
+    while (currentNode.nextElement != null) {
+      // if a node whose next node has the value as data, is found, delete it from the list and return true
+      if (currentNode.nextElement.data == value) {
+        currentNode.nextElement = currentNode.nextElement.nextElement;
+        return true;
+      }
+      currentNode = currentNode.nextElement;
+    }
+    //else node was not found, return false
+    return false;
+  }
+
