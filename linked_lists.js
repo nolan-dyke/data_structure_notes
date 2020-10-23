@@ -97,3 +97,45 @@ LinkedList.prototype.insertAtTail = function(newData) {
     }
     return this;
 }
+
+// Solution almost identical to my function
+
+LinkedList.prototype.insertAtTail = function(newData) {
+  //Creating a new Node with data as newData
+  let node = new Node(newData);
+
+  //check for case when list is empty
+  if (this.isEmpty()) {
+    //Needs to Insert the new node at Head
+    this.head = node;
+    return this;
+  }
+
+  //Start from head
+  let currentNode = this.head;
+
+  //Iterate to the last element
+  while (currentNode.nextElement != null) {
+    currentNode = currentNode.nextElement;
+  }
+
+  //Make new node the nextElement of last node of list
+  currentNode.nextElement = node;
+  return this;
+}
+
+// Search
+
+LinkedList.prototype.search = function(value) {
+  let currentNode = this.head;
+
+  while(currentNode.nextElement !== null) {
+    if(currentNode.data == value) {
+      return true;
+    } else {
+      currentNode = currentNode.nextElement;
+    }
+  }
+
+  return false;
+}
