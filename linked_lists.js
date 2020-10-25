@@ -229,3 +229,35 @@ LinkedList.prototype.deleteAtTail = function() {
     return this;
   }
 
+// Get length
+
+function length(list) {
+    let length = 0;
+    let currentNode = list.head;
+    while(currentNode !== null){
+      length++;
+      currentNode = currentNode.nextElement;
+    }
+  
+    return length;
+}
+
+// Reverse the list in place
+
+function reverse(list) {
+  let previousNode = null;
+  let currentNode = list.getHead(); // The current node
+  let nextNode = null; // The next node in the list
+
+  //Reversal
+  while (currentNode != null) {
+    nextNode = currentNode.nextElement;
+    currentNode.nextElement = previousNode;
+    previousNode = currentNode;
+    currentNode = nextNode;
+  }
+
+  //Set the last element as the new head node
+  list.setHead(previousNode);
+
+}
